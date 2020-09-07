@@ -149,6 +149,7 @@ function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
       `
         #!/usr/bin/python
         #husky ${pkg.version}
+        from __future__ import print_function
         import os
         import sys
         import re
@@ -157,10 +158,10 @@ function createHgScript(normalizedPath, hookName, npmScriptName, verifyMessage)
         pfx = 'husky > '
 
         def print_msg(msg):
-          print pfx + msg
+          print(pfx + msg)
 
         def print_error_msg(msg):
-          print >> sys.stderr, pfx + msg
+          print(pfx + msg, file=sys.stderr)
 
         def has_cmd(cmd):
           def is_exe(fp):
